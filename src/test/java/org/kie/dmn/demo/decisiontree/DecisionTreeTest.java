@@ -17,14 +17,15 @@
 package org.kie.dmn.demo.decisiontree;
 
 import org.junit.Test;
+import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
 import org.kie.dmn.api.core.DMNContext;
 import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNRuntime;
 import org.kie.dmn.core.api.DMNFactory;
-import org.kie.dmn.core.util.DMNRuntimeUtil;
+import org.kie.dmn.core.util.KieHelper;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class DecisionTreeTest {
@@ -32,7 +33,14 @@ public class DecisionTreeTest {
     @Test
     public void testDecisionContext() {
 
-        DMNRuntime runtime = DMNRuntimeUtil.createRuntime("Conclusie_Dakkapel.dmn", this.getClass());
+
+        KieServices ks = KieServices.Factory.get();
+        KieContainer kieContainer = KieHelper.getKieContainer(
+                ks.newReleaseId("org.kie.dmn.demo", "decision-tree", "1.0"),
+                ks.getResources().newClassPathResource("Conclusie_Dakkapel.dmn", this.getClass()));
+
+        DMNRuntime runtime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
+
         DMNModel model = runtime.getModel("http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a",
                 "Conclusie Dakkapel");
 
@@ -45,7 +53,6 @@ public class DecisionTreeTest {
         context.set("Plat dak", true);
 
         DMNResult result = runtime.evaluateAll(model, context);
-        assertThat( DMNRuntimeUtil.formatMessages( result.getMessages() ), result.hasErrors(), is( false ) );
         assertFalse(result.getDecisionResults().isEmpty());
 
     }
@@ -53,7 +60,12 @@ public class DecisionTreeTest {
     @Test
     public void testPartialDecision() {
 
-        DMNRuntime runtime = DMNRuntimeUtil.createRuntime("Conclusie_Dakkapel.dmn", this.getClass());
+        KieServices ks = KieServices.Factory.get();
+        KieContainer kieContainer = KieHelper.getKieContainer(
+                ks.newReleaseId("org.kie.dmn.demo", "decision-tree", "1.0"),
+                ks.getResources().newClassPathResource("Conclusie_Dakkapel.dmn", this.getClass()));
+
+        DMNRuntime runtime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
         DMNModel model = runtime.getModel("http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a",
                 "Conclusie Dakkapel");
 
@@ -65,14 +77,18 @@ public class DecisionTreeTest {
         context.set("Achterkant", true);
 
         DMNResult result = runtime.evaluateDecisionByName(model, "Plaatsing correct", context);
-        assertThat(DMNRuntimeUtil.formatMessages( result.getMessages() ), result.hasErrors(), is( false ));
         assertEquals(result.getDecisionResultByName("Plaatsing correct").getResult(), true);
 
     }
 
     @Test
     public void testDecisionsOnly() {
-        DMNRuntime runtime = DMNRuntimeUtil.createRuntime("Conclusie_Dakkapel.dmn", this.getClass());
+        KieServices ks = KieServices.Factory.get();
+        KieContainer kieContainer = KieHelper.getKieContainer(
+                ks.newReleaseId("org.kie.dmn.demo", "decision-tree", "1.0"),
+                ks.getResources().newClassPathResource("Conclusie_Dakkapel.dmn", this.getClass()));
+
+        DMNRuntime runtime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
         DMNModel model = runtime.getModel("http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a",
                 "Conclusie Dakkapel");
 
@@ -85,7 +101,6 @@ public class DecisionTreeTest {
 
         DMNResult result = runtime.evaluateDecisionByName(model, "Conclusie Dakkappel", context);
 
-        assertThat(DMNRuntimeUtil.formatMessages( result.getMessages() ), result.hasErrors(), is( false ));
         assertEquals(result.getDecisionResultByName("Conclusie Dakkappel").getResult(), "Vergunningvrij");
 
     }
