@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="5.2.13" id="_f0dbe4bb-5fcb-4834-acf0-ed6b81efa82f" name="Conclusie Dakkapel" namespace="http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a" triso:logoChoice="Default">
+  <semantic:extensionElements>
+    <inter:regelgroepen xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Interactieregel">
+      <inter:regelgroep id="groep1">
+        <inter:naam>Groep</inter:naam>
+        <inter:prioriteit>25</inter:prioriteit>
+      </inter:regelgroep>
+    </inter:regelgroepen>
+    <uitv:uitvoeringsregels xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel">
+      <uitv:uitvoeringsregel id="UitvId0001">
+        <uitv:regelgroepRef href="#groep1"/>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Staat de dakkappel aan de zijkant?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0002">
+        <uitv:regelgroepRef href="#groep1"/>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Staat de dakkappel aan de achterkant?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0003">
+        <uitv:regelgroepRef href="#groep1"/>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Bevinden er zich dakpannen rondom?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0004">
+        <uitv:regelgroepRef href="#groep1"/>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Heeft de dakkappel een plat dak?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+    </uitv:uitvoeringsregels>
+  </semantic:extensionElements>
+  <semantic:decision id="_ef217f79-56ef-48e6-93a5-4d7642ae96b6" name="Conclusie Dakkappel">
+    <semantic:extensionElements>
+      <bedr:functioneleStructuurRef xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Bedrijfsregel" href="#http://data.overheid.nl/toepasbareregels/00000001821699180000/id/concept/ConclusieGebruikVanBouwwerken"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_0d94c63f-edfe-48f2-a332-fbf83266ecfe" name="Conclusie Dakkappel" typeRef="feel:string"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_2185b075-e4be-4462-8bb3-f3157b4f2b8b"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_02f06441-ca46-4ca6-84b2-bb50f02fc632"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_62de44ac-98b5-4f19-b1a7-e32a90983254" outputLabel="Conclusie Dakkappel">
+      <semantic:input id="_15e027be-e3cf-432d-a6ca-7cbf7c7997fa">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Plaatsing correct</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_a1b90e87-01dc-44ea-b5af-d6753af0b5ef">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Toepassing correct</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_a50e13b4-0b56-4335-ad09-7afd4806e295">
+        <semantic:outputValues triso:constraintsType="enumeration">
+          <semantic:text>"Vergunningvrij","Vergunningplichtig","Niet van Toepassing"</semantic:text>
+        </semantic:outputValues>
+      </semantic:output>
+      <semantic:rule id="_7238655d-38ef-4fa4-887d-d3c32d445cea">
+        <semantic:inputEntry id="_97ed5b36-a250-424d-a50a-08fd8b1bc0bc">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_04ef1ab4-0cb7-429b-9f24-29e2e57bc5e4">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_07727c3c-6ec3-431f-bcca-d767655b825a">
+          <semantic:text>"Vergunningvrij"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_6e29d63c-6bb0-4631-ac93-76a4bf44e254">
+        <semantic:inputEntry id="_e00e4519-068f-4d66-b688-eeb21704f1d7">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_726f0e8c-b5c9-4daf-8279-33008fbc2e3d">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_54673c49-0806-4b28-8d04-1e09ae9dc0e1">
+          <semantic:text>"Niet van Toepassing"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_b64a1479-a039-4473-a870-150199f7b552">
+        <semantic:inputEntry id="_33d89763-c1a5-4a25-acc5-766273783c8a">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_7fb08157-a93e-453c-b028-934954547f24">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_975e234b-2b29-41a8-93d6-0a3b96fd7cf9">
+          <semantic:text>"Vergunningplichtig"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_2185b075-e4be-4462-8bb3-f3157b4f2b8b" name="Plaatsing correct">
+    <semantic:variable id="_f3de7d47-47b1-414b-ba3e-5c0639683ac2" name="Plaatsing correct" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_25267ff6-b012-4711-883d-47830a35bac7"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_672ab6c7-2e14-49db-9787-6be6f7420dae"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="ANY" id="_243fad3b-962d-4351-903b-50c876477f30" outputLabel="Plaatsing correct">
+      <semantic:input id="_aeadcebf-1024-4c4e-9fad-71b1c87a90c2">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Zijkant</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_81e3938d-d387-46a4-82c4-66fb82c33628">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Achterkant</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_da36939c-929e-4186-b95e-cd1fe5d78027"/>
+      <semantic:rule id="_f094ff7f-c68f-40a7-a1f9-e07cc7d641cc">
+        <semantic:inputEntry id="_a394e08d-6f97-47f2-b2f7-e133b61b6607">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_9f7d662a-e6af-420b-910d-2c1bb2400c9f">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_7663a1b5-229b-44a5-a357-440586cf2996">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_183679d9-f39d-4925-af41-67957576efa3">
+        <semantic:inputEntry id="_506d8118-8d47-4e4d-9e59-5f1f36227a4c">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_3850d5d8-333d-4cf0-99af-06599ea4bb9b">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_30d812a7-c07f-4fd4-8de9-c5e895fc3b93">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_9ac2eae3-2c83-47a1-9e8b-d353f62940c1">
+        <semantic:inputEntry id="_06e72c7d-4d1d-4e6b-9ea3-5352ec01c578">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_7b61c369-ca16-4b51-972a-f4bdb20d4a2c">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_aeb50554-6ff9-4b87-ac78-5ab7c44b4dcb">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_25267ff6-b012-4711-883d-47830a35bac7" name="Zijkant">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0001"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_84e1b632-7a15-462e-bf80-6ac6b59b5305" name="Zijkant" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:inputData id="_672ab6c7-2e14-49db-9787-6be6f7420dae" name="Achterkant">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0002"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_8b4ef8f1-d2a8-4a2d-a3b0-2a3a59e35a9d" name="Achterkant" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:decision id="_02f06441-ca46-4ca6-84b2-bb50f02fc632" name="Toepassing correct">
+    <semantic:variable id="_a12d90e7-7686-4342-b73a-6ce8ad694d13" name="Toepassing correct" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_cc380ccc-da7a-4089-80f7-da289e212974"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_bc38c947-7bf9-4d4e-968b-acccc0c03a64"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="ANY" id="_65b9fcaf-c9d4-41f2-be59-14c12750a3f8" outputLabel="Toepassing correct">
+      <semantic:input id="_7c5cfa1c-0251-42d2-961c-110ffe2ed658">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Dakpannen rondom</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_18295dd4-b35b-4dfb-857d-4b89a2904509">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Plat dak</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_b48c52d0-a5a3-47ad-a060-687f8f847269"/>
+      <semantic:rule id="_dd628e09-0a2d-4936-b6c8-e29403105d73">
+        <semantic:inputEntry id="_31eaa4ec-7082-4d88-9391-723df37c30a4">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_b5d91259-ef4c-462f-93d9-37fd59e1ff91">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_dd4cdd38-21ba-43a0-90d0-667b57d5b7fa">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_4f450019-6bc4-4496-a921-bd72bca85fee">
+        <semantic:inputEntry id="_60efd1ce-e388-4116-98e5-1fbc58f301d9">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_a80e4731-c440-4583-a639-457444061adc">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_6aa2e080-f20e-4a36-94ad-67f4cfb5e4d4">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_65356679-a330-4076-927e-086bac8452e9">
+        <semantic:inputEntry id="_f53817d0-c7b9-48fa-ac38-b67bcb9030dd">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_3e3bdcfc-4b7d-40b4-9784-3322eb312203">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2ebe95d2-3de4-4e7a-b0af-bfbbf27c41d3">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_cc380ccc-da7a-4089-80f7-da289e212974" name="Dakpannen rondom">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0003"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_6b1eb84c-65f0-4226-bdf7-aa5067a0bd69" name="Dakpannen rondom" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:inputData id="_bc38c947-7bf9-4d4e-968b-acccc0c03a64" name="Plat dak">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0004"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_4cc88ab9-8f0c-4395-b3d0-99a5caa945fe" name="Plat dak" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:textAnnotation id="_b41b4bce-698c-4731-8239-f60847147b49">
+    <semantic:text>OR relatie</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_70fa3f47-e0a5-447a-aedf-9c90d76354fe">
+    <semantic:text>AND relation</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_2b45ac94-6018-445f-9eb1-174e02f2070b">
+    <semantic:text>AND</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:association id="_806a04d0-07bb-4c51-823f-dfec055c61d3">
+    <semantic:sourceRef href="#_b41b4bce-698c-4731-8239-f60847147b49"/>
+    <semantic:targetRef href="#_2185b075-e4be-4462-8bb3-f3157b4f2b8b"/>
+  </semantic:association>
+  <semantic:association id="_b1fe04c2-1ef0-4a3e-947d-88bb09ef50a8">
+    <semantic:sourceRef href="#_70fa3f47-e0a5-447a-aedf-9c90d76354fe"/>
+    <semantic:targetRef href="#_02f06441-ca46-4ca6-84b2-bb50f02fc632"/>
+  </semantic:association>
+  <semantic:association id="_19e17e7f-a169-44e2-9d7e-b6307a0bf6e7">
+    <semantic:sourceRef href="#_2b45ac94-6018-445f-9eb1-174e02f2070b"/>
+    <semantic:targetRef href="#_ef217f79-56ef-48e6-93a5-4d7642ae96b6"/>
+  </semantic:association>
+</semantic:definitions>
