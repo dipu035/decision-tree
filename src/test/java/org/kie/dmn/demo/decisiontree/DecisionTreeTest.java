@@ -101,7 +101,6 @@ public class DecisionTreeTest {
     @Test
     public void testDecisionInfoReqs() {
         DecisionNode decisionNode = model.getDecisionByName("Conclusie Dakkappel");
-        Decision decision = decisionNode.getDecision();
         List<InformationRequirement> infoReqs = decisionNode.getDecision().getInformationRequirement();
         List<DecisionNode> decisions = new ArrayList<>();
         List<InputDataNode> inputData = new ArrayList<>();
