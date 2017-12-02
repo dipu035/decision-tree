@@ -16,6 +16,7 @@
 
 package org.kie.dmn.demo.decisiontree;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
@@ -23,28 +24,40 @@ import org.kie.dmn.api.core.DMNContext;
 import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNRuntime;
+import org.kie.dmn.api.core.ast.DMNNode;
+import org.kie.dmn.api.core.ast.DecisionNode;
+import org.kie.dmn.api.core.ast.InputDataNode;
 import org.kie.dmn.core.api.DMNFactory;
 import org.kie.dmn.core.util.KieHelper;
+import org.kie.dmn.model.v1_1.Decision;
+import org.kie.dmn.model.v1_1.InformationRequirement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class DecisionTreeTest {
 
-    @Test
-    public void testDecisionContext() {
+    private static DMNRuntime runtime;
+    private static DMNModel model;
 
-
+    @BeforeClass
+    public static void init() {
         KieServices ks = KieServices.Factory.get();
         KieContainer kieContainer = KieHelper.getKieContainer(
                 ks.newReleaseId("org.kie.dmn.demo", "decision-tree", "1.0"),
-                ks.getResources().newClassPathResource("Conclusie_Dakkapel.dmn", this.getClass()));
+                ks.getResources().newClassPathResource("Conclusie_Dakkapel.dmn", DecisionTreeTest.class));
 
-        DMNRuntime runtime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
+        runtime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
 
-        DMNModel model = runtime.getModel("http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a",
+        model = runtime.getModel("http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a",
                 "Conclusie Dakkapel");
-
         assertNotNull(model);
+    }
+
+    @Test
+    public void testDecisionContext() {
 
         DMNContext context = DMNFactory.newContext();
         context.set("Zijkant", true);
@@ -60,16 +73,6 @@ public class DecisionTreeTest {
     @Test
     public void testPartialDecision() {
 
-        KieServices ks = KieServices.Factory.get();
-        KieContainer kieContainer = KieHelper.getKieContainer(
-                ks.newReleaseId("org.kie.dmn.demo", "decision-tree", "1.0"),
-                ks.getResources().newClassPathResource("Conclusie_Dakkapel.dmn", this.getClass()));
-
-        DMNRuntime runtime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
-        DMNModel model = runtime.getModel("http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a",
-                "Conclusie Dakkapel");
-
-        assertNotNull(model);
 
         DMNContext context = DMNFactory.newContext();
 
@@ -83,16 +86,6 @@ public class DecisionTreeTest {
 
     @Test
     public void testDecisionsOnly() {
-        KieServices ks = KieServices.Factory.get();
-        KieContainer kieContainer = KieHelper.getKieContainer(
-                ks.newReleaseId("org.kie.dmn.demo", "decision-tree", "1.0"),
-                ks.getResources().newClassPathResource("Conclusie_Dakkapel.dmn", this.getClass()));
-
-        DMNRuntime runtime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
-        DMNModel model = runtime.getModel("http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a",
-                "Conclusie Dakkapel");
-
-        assertNotNull(model);
 
         DMNContext context = DMNFactory.newContext();
 
@@ -103,6 +96,35 @@ public class DecisionTreeTest {
 
         assertEquals(result.getDecisionResultByName("Conclusie Dakkappel").getResult(), "Vergunningvrij");
 
+    }
+
+    @Test
+    public void testDecisionInfoReqs() {
+        DecisionNode decisionNode = model.getDecisionByName("Conclusie Dakkappel");
+        Decision decision = decisionNode.getDecision();
+        List<InformationRequirement> infoReqs = decisionNode.getDecision().getInformationRequirement();
+        List<DecisionNode> decisions = new ArrayList<>();
+        List<InputDataNode> inputData = new ArrayList<>();
+        for(InformationRequirement infoReq : infoReqs) {
+            DMNNode node = getInfoReq(infoReq);
+            if(node instanceof DecisionNode) {
+                decisions.add((DecisionNode) node);
+            } else {
+                inputData.add((InputDataNode)node);
+            }
+        }
+        assertEquals(decisions.size(), 2);
+        assertTrue(inputData.isEmpty());
+    }
+
+    private DMNNode getInfoReq(InformationRequirement infoReq) {
+        DMNNode node = null;
+        if(infoReq.getRequiredInput() != null) {
+            node = model.getInputById(infoReq.getRequiredInput().getHref().substring(1));
+        } else if (infoReq.getRequiredDecision() != null) {
+            node = model.getDecisionById(infoReq.getRequiredDecision().getHref().substring(1));
+        }
+        return node;
     }
 
 }
