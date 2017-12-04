@@ -29,11 +29,11 @@ import org.kie.dmn.api.core.ast.DecisionNode;
 import org.kie.dmn.api.core.ast.InputDataNode;
 import org.kie.dmn.core.api.DMNFactory;
 import org.kie.dmn.core.util.KieHelper;
-import org.kie.dmn.model.v1_1.Decision;
 import org.kie.dmn.model.v1_1.InformationRequirement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -41,6 +41,8 @@ public class DecisionTreeTest {
 
     private static DMNRuntime runtime;
     private static DMNModel model;
+    private List<InputDataNode> inputNodes = new ArrayList<>();
+    private List<DecisionNode> decisionNodes = new ArrayList<>();
 
     @BeforeClass
     public static void init() {
@@ -66,7 +68,8 @@ public class DecisionTreeTest {
         context.set("Plat dak", true);
 
         DMNResult result = runtime.evaluateAll(model, context);
-        assertFalse(result.getDecisionResults().isEmpty());
+        assertTrue(result.getMessages().isEmpty());
+        assertEquals("Vergunningvrij", result.getDecisionResultByName("Conclusie Dakkappel").getResult());
 
     }
 
@@ -82,6 +85,18 @@ public class DecisionTreeTest {
         DMNResult result = runtime.evaluateDecisionByName(model, "Plaatsing correct", context);
         assertEquals(result.getDecisionResultByName("Plaatsing correct").getResult(), true);
 
+    }
+
+    @Test
+    public void testEvaluateDecisionWithSubDecisionAndInputs() {
+        DMNContext context = DMNFactory.newContext();
+        context.set("Plaatsing correct", true);
+        context.set("Dakpannen rondom", true);
+        context.set("Plat dak", true);
+
+        DMNResult result = runtime.evaluateAll(model, context);
+        assertTrue(result.getMessages().isEmpty());
+        assertEquals("Vergunningvrij", result.getDecisionResultByName("Conclusie Dakkappel").getResult());
     }
 
     @Test
