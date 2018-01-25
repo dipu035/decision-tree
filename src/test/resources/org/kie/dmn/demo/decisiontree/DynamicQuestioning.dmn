@@ -1,0 +1,1597 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd"
+                      xmlns="http://www.trisotech.com/dmn/definitions/_1c096d4d-9f50-4678-a647-a920a78c4404"
+                      xmlns:feel="http://www.omg.org/spec/FEEL/20140401"
+                      xmlns:triso="http://www.trisotech.com/2015/triso/modeling" exporter="DMN Modeler"
+                      exporterVersion="5.2.14.2" id="_cc4f766a-09bd-49db-8c4c-e3653d844545"
+                      name="Brandveilig gebruik Dynamisch"
+                      namespace="http://toepasbare-regels.omgevingswet.overheid.nl/00000001821699180000"
+                      triso:logoChoice="Default">
+  <semantic:extensionElements>
+    <inter:regelgroepen xmlns:inter="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Interactieregel">
+      <inter:regelgroep id="groep1">
+        <inter:naam>Melder</inter:naam>
+        <inter:prioriteit>25</inter:prioriteit>
+      </inter:regelgroep>
+      <inter:regelgroep id="groep4">
+        <inter:naam>Gemachtigde</inter:naam>
+        <inter:prioriteit>40</inter:prioriteit>
+      </inter:regelgroep>
+      <inter:regelgroep id="groep2">
+        <inter:naam>Bouwwerk</inter:naam>
+        <inter:prioriteit>50</inter:prioriteit>
+      </inter:regelgroep>
+      <inter:regelgroep id="groep3">
+        <inter:naam>Tijdelijk gebruik</inter:naam>
+        <inter:prioriteit>75</inter:prioriteit>
+      </inter:regelgroep>
+    </inter:regelgroepen>
+    <uitv:uitvoeringsregels xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel">
+      <uitv:uitvoeringsregel id="UitvId0002">
+        <uitv:regelgroepRef href="#groep1"/>
+        <uitv:bereik>gebruiker</uitv:bereik>
+        <uitv:vraag>
+          <uitv:gegevensType>string</uitv:gegevensType>
+          <uitv:vraagTekst>Wat is het adres van de melder?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0003">
+        <uitv:regelgroepRef href="#groep1"/>
+        <uitv:bereik>gebruiker</uitv:bereik>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Wordt de aanvraag door de belanghebbende zelf ingediend?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0008">
+        <uitv:regelgroepRef href="#groep2"/>
+        <uitv:vraag>
+          <uitv:gegevensType>datum</uitv:gegevensType>
+          <uitv:vraagTekst>Vanaf wanneer gaat u het bouwwerk gebruiken?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0004">
+        <uitv:regelgroepRef href="#groep2"/>
+        <uitv:vraag>
+          <uitv:gegevensType>lijstwaarde</uitv:gegevensType>
+          <uitv:vraagTekst>Ligging van het bouwwerk?</uitv:vraagTekst>
+          <uitv:opties>
+            <uitv:optieType>enkelAntwoord</uitv:optieType>
+            <uitv:optie>
+              <uitv:sequenceId>1</uitv:sequenceId>
+              <uitv:optieText>Noord</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>2</uitv:sequenceId>
+              <uitv:optieText>Noord-Oost</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>3</uitv:sequenceId>
+              <uitv:optieText>Noord-West</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>4</uitv:sequenceId>
+              <uitv:optieText>Zuid</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>5</uitv:sequenceId>
+              <uitv:optieText>Zuid-Oost</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>6</uitv:sequenceId>
+              <uitv:optieText>Zuid-West</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>7</uitv:sequenceId>
+              <uitv:optieText>Oost</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>8</uitv:sequenceId>
+              <uitv:optieText>West</uitv:optieText>
+            </uitv:optie>
+          </uitv:opties>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0005">
+        <uitv:regelgroepRef href="#groep3"/>
+        <uitv:vraag>
+          <uitv:gegevensType>lijstwaarde</uitv:gegevensType>
+          <uitv:vraagTekst>Welke maanden gaat u het bouwwerk gebruiken?</uitv:vraagTekst>
+          <uitv:opties>
+            <uitv:optieType>meerdereAntwoorden</uitv:optieType>
+            <uitv:optie>
+              <uitv:sequenceId>1</uitv:sequenceId>
+              <uitv:optieText>januari</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>2</uitv:sequenceId>
+              <uitv:optieText>februari</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>3</uitv:sequenceId>
+              <uitv:optieText>maart</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>4</uitv:sequenceId>
+              <uitv:optieText>april</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>5</uitv:sequenceId>
+              <uitv:optieText>mei</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>6</uitv:sequenceId>
+              <uitv:optieText>juni</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>7</uitv:sequenceId>
+              <uitv:optieText>juli</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>8</uitv:sequenceId>
+              <uitv:optieText>augustus</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>9</uitv:sequenceId>
+              <uitv:optieText>september</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>10</uitv:sequenceId>
+              <uitv:optieText>oktober</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>11</uitv:sequenceId>
+              <uitv:optieText>november</uitv:optieText>
+            </uitv:optie>
+            <uitv:optie>
+              <uitv:sequenceId>12</uitv:sequenceId>
+              <uitv:optieText>december</uitv:optieText>
+            </uitv:optie>
+          </uitv:opties>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0006">
+        <uitv:regelgroepRef href="#groep1"/>
+        <uitv:bereik>gebruiker</uitv:bereik>
+        <uitv:vasteWaarde>
+          <uitv:waardeVraag>Vaste waarde vraag</uitv:waardeVraag>
+          <uitv:waarde>true</uitv:waarde>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+        </uitv:vasteWaarde>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0007">
+        <uitv:regelgroepRef href="#groep2"/>
+        <uitv:bijlage>
+          <uitv:bijlageType>Plattegrond Gebruiksmelding</uitv:bijlageType>
+          <uitv:eis>De schaal van de plattegrond moet minimaal 1:100 zijn, bij een brutovloeroppervlakte van meer dan 10.000 m2 minimaal 1:200.</uitv:eis>
+        </uitv:bijlage>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0010">
+        <uitv:regelgroepRef href="#groep3"/>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Is dit bouwwerk bedoeld voor tijdelijk gebruik?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0011">
+        <uitv:regelgroepRef href="#groep2"/>
+        <uitv:geoVerwijzing>
+          <uitv:werkingsgebied>
+            <uitv:geometrie idref="beheergebiedHDSR.geom"/>
+          </uitv:werkingsgebied>
+        </uitv:geoVerwijzing>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0012">
+        <uitv:regelgroepRef href="#groep2"/>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Is de hoogte van de hoogste vloer boven het maaiveld bekend?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0013">
+        <uitv:regelgroepRef href="#groep2"/>
+        <uitv:vraag>
+          <uitv:gegevensType>boolean</uitv:gegevensType>
+          <uitv:vraagTekst>Heeft het gebouw een automatische blusinstallatie met watermist?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0014">
+        <uitv:regelgroepRef href="#groep1"/>
+        <uitv:bereik>gebruiker</uitv:bereik>
+        <uitv:vraag>
+          <uitv:gegevensType>string</uitv:gegevensType>
+          <uitv:vraagTekst>Wat is de naam van de melder?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0015">
+        <uitv:regelgroepRef href="#groep4"/>
+        <uitv:bereik>gebruiker</uitv:bereik>
+        <uitv:vraag>
+          <uitv:gegevensType>string</uitv:gegevensType>
+          <uitv:vraagTekst>Wat is het adres van de gemachtigde?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+      <uitv:uitvoeringsregel id="UitvId0016">
+        <uitv:regelgroepRef href="#groep4"/>
+        <uitv:bereik>gebruiker</uitv:bereik>
+        <uitv:vraag>
+          <uitv:gegevensType>string</uitv:gegevensType>
+          <uitv:vraagTekst>Wat is de naam van de gemachtigde?</uitv:vraagTekst>
+        </uitv:vraag>
+      </uitv:uitvoeringsregel>
+    </uitv:uitvoeringsregels>
+  </semantic:extensionElements>
+  <semantic:itemDefinition isCollection="false" label="tBrandveiliggebruik" name="tBrandveiliggebruik">
+    <semantic:itemComponent id="_73651434-3a0d-4573-a1ca-b1ddbbcb61fa" isCollection="false" name="Indienbaar">
+      <semantic:typeRef>feel:boolean</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_1a177892-9c07-4552-940e-22ad750d2d0c" isCollection="false" name="Compleet">
+      <semantic:typeRef>feel:boolean</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:inputData id="_efd9d33a-d676-4c3d-8de7-2653e3e56b8a" name="Aanvraag wordt door melder zelf ingediend grondslag">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0003"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_40bb1b1f-9dbe-40da-a59f-b5da09c4580b" name="Aanvraag wordt door melder zelf ingediend grondslag" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:decision id="_58175716-3ae0-43b0-8e11-72c1e238d9cd" name="Machtiging correct">
+    <semantic:variable id="_4423a112-45d3-41d3-9171-01f0eebef65d" name="Machtiging correct" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_efd9d33a-d676-4c3d-8de7-2653e3e56b8a"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_6362fe80-ce54-4b1b-9efd-fb4d029ab554"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_f8fef30c-30b2-4048-8f50-71951ddd3be4"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="ANY" id="_dc1929f2-9c11-4b2a-afdd-4a1662d7f126" outputLabel="Machtiging correct">
+      <semantic:input id="_585d0758-9a53-43d4-8245-72588f051e50">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Aanvraag wordt door melder zelf ingediend grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_fe460c91-8de2-4ebd-b0bc-fc67dbf75b74">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Adres van de gemachtigde grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_b9e7654f-9aa3-4c0b-8cbd-4c362859d29b">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Naam van de gemachtigde grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_0ae1d5e6-3e8e-4ec9-8a85-feb9ef3e8cc7"/>
+      <semantic:rule id="_73d21b43-06bf-4b9b-aedc-6fbe2966474a">
+        <semantic:inputEntry id="_93f0d1c7-45c4-42e7-b5ba-ea6079fbd726">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_e360e400-89a4-45a8-94fb-36d2cfe96ae7">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_5cbb120d-d06d-467e-8a71-563e246bbf5e">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_45b1067a-21f3-43fa-a98a-c5d868ec76c8">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_80bb5b09-b374-4926-b257-e0673caf72df">
+        <semantic:inputEntry id="_ba079706-a0ff-4f2f-9a30-1446d54bf9ac">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_44312e1b-7370-4887-a722-93f5e5bc85bd">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_2fc9928a-bbd5-48fd-8558-c6618dcc109d">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_e794bf94-c4dd-4f04-bf78-1c1367f41440">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_48fd59ed-0d9f-4e12-a1c0-536334376242">
+        <semantic:inputEntry id="_96c6cfb6-0512-47e7-a6da-17c12e373e34">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_b4b89b8c-d039-469e-83f1-3cef92adf1df">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_3f2ecc7b-3462-4704-a4a7-90257ee56be4">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_0603c1c6-d7a5-4b8b-a0f3-8fd09eb577b8">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_01edd46f-6248-4de2-8a99-de754adb61d4">
+        <semantic:inputEntry id="_42b2b97c-be4b-4a8d-bf93-8e704cd5d730">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_21f67f2c-ce23-449d-afd7-19de2e6eeac9">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_11d77270-e51d-4caf-be32-df659fe2a48d">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_3f8c915f-504e-4727-944d-d61a52f38598">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_e2489244-637b-4a32-88fd-d31addadad0c" name="Verplicht lokaal - Gebruiken van bouwwerken">
+    <semantic:variable id="_79597ed7-28b0-452d-95b5-39c4d173384a" name="Verplicht lokaal - Gebruiken van bouwwerken" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_58175716-3ae0-43b0-8e11-72c1e238d9cd"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_544a0925-92d2-43c9-9e47-75f1b5a99e7d"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_a15a85bc-7d1f-4b34-9c34-9e28345c4f2b"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_931cee3e-8f0a-49ce-a5f3-29e239e584bd"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_ee517d91-6f91-4ece-839a-d9fe765161c6"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_780f8963-00ae-42dc-a6b0-d46572a8a390"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_f43fd546-f4ee-416b-8fc1-19565e11f2f4"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_71f5f4c8-1f2d-4060-b590-30b722d870c5"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="ANY" id="_875aa10a-3f5b-4e15-9b88-d61a608341a8" outputLabel="Verplicht lokaal - Gebruiken van bouwwerken">
+      <semantic:input id="_99470be0-61a9-4ced-b22b-44b058d5e523">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Machtiging correct</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_6cf53dc9-e5b5-4c54-bef2-9488f38a8a5d">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Plaatsaanduiding bouwwerk</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_f8ef1a49-af63-46b9-b6a5-5f366576752c">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Adres van de melder grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_38787ddb-5cce-4392-922a-24f3ee52d1e2">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Plattegrondtekening grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_6e24673c-1abb-49d2-a33f-54c3b3452bfb">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Dagtekening grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_ca973ace-97b1-4a2d-97b7-563d25a28f35">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Ondertekening grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_a8ade48a-2e52-4f87-a917-5f090bbc6ec6">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Lokale brandveilig gebruik gegevens</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_8eefb437-5c54-4b82-bd7d-549eacff4bfb">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Naam van de melder grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_a67abb6d-31ba-46c5-b9a2-a303b1476c15"/>
+      <semantic:rule id="_614699e8-e7e7-4fc4-bb06-bff2d2a40115">
+        <semantic:inputEntry id="_0daaa567-41c6-40a6-93cb-a338d43c4fb6">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_58806eda-c95f-4c15-a4cb-9527924abfff">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_01f70f0b-2616-42ea-bbd9-64ebf0d778d8">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_a422d04f-de49-437d-9ea8-bbf69f77d139">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_d7373f51-ee0a-4d8d-9902-cd11816e90cd">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_15851d01-83b0-4c17-a41a-480143b66fa4">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_02d21ee7-c41e-4025-be52-8863ec26608b">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_38bf92e3-c382-4b4f-b213-0f34859b5948">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_97e60423-4992-48a6-a361-aa543c801501">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_f3dad0c1-505f-4bfe-9c33-6b9c05576d53">
+        <semantic:inputEntry id="_1e7fd7c7-da21-48fb-94c1-60a90e3be175">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_f59d5957-6b99-413d-8f73-f8d46294fd93">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_9bcf90f1-3a6f-494d-9dc3-5bca32c21554">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_4d223efe-8c80-490a-8136-bb3feef13dd7">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_93c4a66c-0fcf-466d-b87d-d76c4d29bde7">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_c0d07d03-be67-417e-be05-49b52d778078">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_00476ec3-f646-4ef7-ad1f-d60d52803fe3">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_a933afba-b6ab-4dd1-b460-7b5546bd4fc8">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_3a0376da-385a-4301-bc07-46d129801f50">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_b5e58796-bc78-47ce-948d-e8781df0af6a">
+        <semantic:inputEntry id="_026d30ee-be4e-430a-9dde-066c54de0b3e">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_b9165b4e-5275-41ce-8650-b0049f7bdb53">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_20560f07-c042-41bd-801f-5c842ba4c1d3">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_08601fe7-62db-4763-996d-7a4c3805b9c6">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_8667d1f1-84a8-44c7-af78-3d4d3c44dd37">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_25c3785a-787a-438c-a572-6a975112b8a9">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_2c62ade4-8c83-4395-8f86-109c04095b11">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_14e7d93c-95f5-4918-b511-fd7614448a99">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_250ec5d8-a807-49c3-ae99-fdd5055633f5">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_66cef68a-d194-4c8e-9a95-23e26b8f2342">
+        <semantic:inputEntry id="_beea7049-6cb4-4cc5-8874-8c0cac77aeda">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_5e54ae5f-1e27-4c76-b702-f828cdff3249">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_39132566-9eee-45eb-aace-2d69311265fb">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_7ed64297-a67b-4956-b406-031785ed2157">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_2055f346-7e6c-4708-9629-a8a0efbb03e0">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_c874d696-b602-45ae-b749-5d6356990a74">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_0b9aa7bc-d710-43fd-809d-c71dea838251">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_412a8f78-b788-4ce4-a7df-01d8626a791b">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_6de0cad0-2d1d-4784-91f5-866d4c3c2f44">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_196bb36a-5677-4d38-8c97-77f795fcc1c4">
+        <semantic:inputEntry id="_9c64d1e4-389d-40f3-95a9-567ffd34f273">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_9875b90b-7f42-4343-b20b-932beec7a31e">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_342c81fa-3b95-44c0-a135-6ed27b91fc56">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_0c2fb357-1435-47df-838e-4a25bd94303e">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_d7f3c3c3-cc5d-4843-9040-61df880ab136">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_ec2aa00c-6beb-4a0f-af68-8964d7dc7126">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_5e417dac-073e-4e1c-b0af-7625ab6ddf30">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_b5328483-f670-4f4d-8a8d-fd67114eb77e">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_333c4ab4-3d8d-4862-a47a-c8474ac3df17">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_37fe993d-6096-4ab2-bf0b-706f24bbe99c">
+        <semantic:inputEntry id="_631f4548-75af-4236-ac3e-23fd742f91b8">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_60c4290a-35e8-41f9-a7ed-4b89ffdf3de2">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_2dfa2426-953c-48ba-a108-0118c889b589">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_66eef287-33e1-403d-9ea8-7b23bdccfcb4">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_74e44144-1598-450d-94f9-f8878c1a0246">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_2efd8cad-a8d6-49fa-8074-e59f89d16c6e">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_ac82f926-eb29-4ed3-a8b7-ec30f169b05b">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_9ad7caa1-4837-48d2-918a-7ae961c8cb23">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_67d4f098-7a71-49fa-af32-40cdab4c6ee4">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_3f6381b1-181c-4426-bf7c-9d7462c7fad7">
+        <semantic:inputEntry id="_e1e58aaa-2c22-4b00-82c9-374de5035ebd">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_f3ac7bb5-60b8-4283-9080-b6e2c4fc8965">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_4309ab20-3a4e-4f75-bdde-45ae19cdaf17">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_1cab6665-7edc-4d7c-bb16-cf40fcc1b578">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_9e4f13df-0ab5-4470-a73f-b68ecb3909a4">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_ad7bd572-02ec-4c62-b5d2-d4d3050f1857">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_ea4dd5c9-107d-4dde-a57d-bc3fbaadb9ee">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_4f6745de-7c7c-4094-8408-595d7968fa35">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_a71b6565-3dac-4392-adf6-55299373c662">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_5a9af130-be15-400e-b83f-90070aadd1aa">
+        <semantic:inputEntry id="_8ba3b6da-1ab1-49d1-81d3-378e3f2ae952">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_03b110b0-7a78-4d46-872f-931fcc7ca6a1">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_d6fb761a-1f32-4729-91cd-ae3f3e971129">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_d9b33b1d-a289-4477-8700-7a7331642ede">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_e834bba5-5b0f-4065-939d-b4d6ad29c291">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_1c3c38a0-c89b-405b-b1be-d64a46a983c8">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_2fddc8de-5296-44c4-acd9-8161b699324b">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_4adf86d8-1612-4e30-a132-0497beba3a83">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_82edb008-7f1e-4744-8b85-194dc45d6156">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_fb6ce4c9-c9f8-414a-8ae2-412d4c241e09">
+        <semantic:inputEntry id="_f6cfec4f-e221-4c34-9bbb-e7aec82f7518">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_d552a4b0-b4c5-4d84-9bdd-21c8987ff3fe">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_a8f0cb1e-6625-4e20-ba69-48497f74824e">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_63afc5fa-1cb6-41b5-83d8-9dbeebcadcc7">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_a86fbfcf-6f59-4d11-91b6-8c840fd94dae">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_630052fd-6131-43d0-af9c-1641a1849a15">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_285acd95-62bb-4aab-99ec-f5383139faf7">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_8c93e45b-def5-4745-b458-83275529c4d6">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b38801c2-cbb3-4f62-bfc8-c585acb45f00">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_68f98480-b7c0-4b12-bb0d-552c962a1a45" name="Brandveilig gebruik">
+    <semantic:extensionElements>
+      <bedr:functioneleStructuurRef xmlns:bedr="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Bedrijfsregel" href="#http://toepasbare-regels.omgevingswet.overheid.nl/00000001821699180000/id/concept/IndieningsvereistenMeldingGebruikVanBouwwerken"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_ca1a7cc2-9673-4eb9-ae19-f6e2f2166db6" name="Brandveilig gebruik" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_e2489244-637b-4a32-88fd-d31addadad0c"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_16d58736-68c4-4ea1-8fec-786eaceacae5"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_85bc3dd2-f306-4121-b320-e5de39883cfc" outputLabel="Brandveilig gebruik">
+      <semantic:input id="_e611c100-b581-4718-9901-39437a997ea8">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Verplicht lokaal - Gebruiken van bouwwerken</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_d1196193-e90a-4c71-9418-fbf5480aa6df">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Niet verplicht - Gebruiken van bouwwerken</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_007a41b1-2307-4ea5-8330-d9fd6e9c49c7"/>
+      <semantic:rule id="_4357b250-ac0d-493c-a8b1-dac578057cc9">
+        <semantic:description>Compleet = false</semantic:description>
+        <semantic:inputEntry id="_ecccec0e-8d4f-433d-916e-44b880fe358b">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_c0e7d15b-16e1-44c2-9502-983f241e1428">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_d07f86df-8a43-4074-9cf0-ed193eabc999">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_0305a404-6aba-4c9e-9d78-e36941702bb8">
+        <semantic:description>Compleet = false</semantic:description>
+        <semantic:inputEntry id="_2ec9d6c4-0db8-4912-b979-63f15e589d09">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_b8bc32e9-bc34-4a46-9557-018b0f8ba2ce">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_c8e56240-d2bd-4bfa-ab64-8b86864b8132">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_af9a622b-49bb-45c9-aee5-9cd8ea91edbf">
+        <semantic:description>Compleet = true</semantic:description>
+        <semantic:inputEntry id="_2fb8c9a5-b0c9-41b1-ae75-60f20504f654">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_dd63823d-2f91-46c8-bdea-4df160d244b0">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_fe3b880a-4ee4-41ff-ad6b-f71c88167b4e">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_544a0925-92d2-43c9-9e47-75f1b5a99e7d" name="Plaatsaanduiding bouwwerk">
+    <semantic:variable id="_b06b39e6-388b-46ed-96cd-3c7998d89650" name="Plaatsaanduiding bouwwerk" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_abbc8fa3-2f86-431e-8aba-215a93e1619c"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="ANY" id="_8e0029ac-2c2b-48d2-95ca-7290bb1ad1a5" outputLabel="Plaatsaanduiding bouwwerk">
+      <semantic:input id="_b895bfda-d06f-4eca-b3d3-1b9aba9f8e36">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Ligging van het bouwwerk grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_1a02c6b6-7d52-47f6-a214-7f5edcdfa987"/>
+      <semantic:rule id="_d6a55d56-9c46-4cfa-8bc7-8c342f397d52">
+        <semantic:inputEntry id="_d6c776e0-76be-4b6d-8a84-cf474d8b1f27">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2a9726f8-0afc-472c-81c3-d2c862ebad4a">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_1e18ab6d-1383-4603-82ca-d467e395cbaa">
+        <semantic:inputEntry id="_f00a014b-2b0e-4a70-8627-18f783dbe5d0">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_1841c7d9-71f2-489d-934c-82e0c0e9da75">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_58ba91c1-df90-4fa7-b741-f7c624c7f09a" name="Adres van de melder input">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0002"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_5b871173-40a8-4456-a1f1-8570ab3f7a3b" name="Adres van de melder input" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:decision id="_328fdaa4-2d46-4722-a894-50478f9ebb3b" name="Adres van de melder conversie">
+    <semantic:variable id="_99465b7c-fb42-472a-9216-a61678d4f15f" name="Adres van de melder conversie" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_58ba91c1-df90-4fa7-b741-f7c624c7f09a"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_1cb36450-908f-439b-a976-b6e1dfc6f9c9" outputLabel="Adres van de melder conversie">
+      <semantic:input id="_d247a3a4-9d42-42ab-bf8b-37ed6bf09a27">
+        <semantic:inputExpression typeRef="feel:string">
+          <semantic:text>Adres van de melder input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_e7f49db2-d07d-4169-8f60-b00e240904a7"/>
+      <semantic:rule id="_32e8e74b-41e1-4168-ad22-3b8655febc22">
+        <semantic:inputEntry id="_de7f58b2-d1ca-43cb-8134-8e2554fd7452">
+          <semantic:text>not(null)</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2b4426ec-4d78-4631-bbcc-9c164bdef500">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_a15a85bc-7d1f-4b34-9c34-9e28345c4f2b" name="Adres van de melder grondslag">
+    <semantic:variable id="_b291b0ca-2a78-4d98-a589-0b5421674b6c" name="Adres van de melder grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_328fdaa4-2d46-4722-a894-50478f9ebb3b"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_43a1d2ef-7475-4955-81f2-2062a1a9402f" outputLabel="Adres van de melder grondslag">
+      <semantic:input id="_d2db4a84-0a73-4958-a1a2-601eb3ab7c93">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Adres van de melder conversie</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_453e91bc-cf02-4228-97f3-9828d3733451"/>
+      <semantic:rule id="_27669629-24a9-45a4-b6b7-87b21d47c569">
+        <semantic:inputEntry id="_56fd1f80-026a-4192-b8ce-fbbf68a38158">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_1ade9da2-7f54-43ae-853c-52017441ad36">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_16a551db-5f37-4ed3-9877-44679cab2ae2">
+        <semantic:inputEntry id="_2007a714-940a-4053-a88c-b028fe6d8c07">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_55a4770a-af96-4f58-828c-6f4b79dd6090">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_d4107efd-0e04-44f9-a4a2-314b9bdef351" name="Ligging van het bouwwerk input">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0004"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_c5271b81-747d-42fa-b99a-8cd9e5d68a62" name="Ligging van het bouwwerk input" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:decision id="_c14e8d06-338d-4d99-9c51-1b14d21316f7" name="Ligging van het bouwwerk conversie">
+    <semantic:variable id="_6524169e-c439-41d7-838f-fec5711d8603" name="Ligging van het bouwwerk conversie" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_d4107efd-0e04-44f9-a4a2-314b9bdef351"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_40d05675-5868-4592-b432-b26881c27af3" outputLabel="Ligging van het bouwwerk conversie">
+      <semantic:input id="_b0ce9406-d3a5-4a9b-96b1-b75b7f41c516">
+        <semantic:inputExpression typeRef="feel:string">
+          <semantic:text>Ligging van het bouwwerk input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_e23aff81-dd53-4e94-8269-bb3d94d24f34"/>
+      <semantic:rule id="_605e8df6-5de7-418f-a09e-96307fd772ae">
+        <semantic:inputEntry id="_e803d0ba-7bb6-4b06-b68f-0328029d7a58">
+          <semantic:text>not(null)</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_e74331d6-71a4-4153-a37c-4d53b3065cda">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_abbc8fa3-2f86-431e-8aba-215a93e1619c" name="Ligging van het bouwwerk grondslag">
+    <semantic:variable id="_325b52ed-9ce5-4916-a738-de313df0ea24" name="Ligging van het bouwwerk grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_c14e8d06-338d-4d99-9c51-1b14d21316f7"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_4d6f8282-7a26-4191-b960-f2f4075551a1" outputLabel="Ligging van het bouwwerk grondslag">
+      <semantic:input id="_e41bcd20-74b7-4c33-9a11-ff03b7a03853">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Ligging van het bouwwerk conversie</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_aaeef68a-841f-4a55-a79f-0aa2cf82ff39"/>
+      <semantic:rule id="_0ff67624-672d-403a-a172-0545e16f0b33">
+        <semantic:inputEntry id="_1df40361-a67a-4739-934e-1b2168ca9f82">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_8b932102-6ff3-432e-a998-845ebe8cfcfe">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_a36aa32b-46e0-4d59-bd63-038a505917e6">
+        <semantic:inputEntry id="_2f6aa35d-516b-4ed3-8b01-3597f65c2cc5">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_3fa99492-891a-4b4d-9021-b177ef6fcc92">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_ab5f4cac-e26b-4ef7-bedb-d3350fcb4919" name="Periode of tijdvakken beoogd gebruik input">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0005"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_215fc306-01d7-4bd5-9c2a-2dbc7bb67fef" name="Periode of tijdvakken beoogd gebruik input" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:decision id="_e05959e7-1dfb-4475-94da-2b19943e4d77" name="Periode of tijdvakken beoogd gebruik conversie">
+    <semantic:variable id="_82097a53-9d6f-4399-9de7-ba1a0a06823a" name="Periode of tijdvakken beoogd gebruik conversie" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_ab5f4cac-e26b-4ef7-bedb-d3350fcb4919"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_accb32c3-14c1-49e6-99a3-5cde9f180bec" outputLabel="Periode of tijdvakken beoogd gebruik conversie">
+      <semantic:input id="_f867b75a-f0c1-4be1-99d2-85bff5c11fc6">
+        <semantic:inputExpression typeRef="feel:string">
+          <semantic:text>Periode of tijdvakken beoogd gebruik input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_bce0cc02-6642-442b-af44-cfd8d5da8373"/>
+      <semantic:rule id="_be5e8513-5c7f-437d-98eb-d0c98d3f9d92">
+        <semantic:inputEntry id="_ffb384c8-ca01-4d91-a213-6d94ba2678bb">
+          <semantic:text>not(null)</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_a93b69c5-2c98-467c-bb1e-5cd34ef6f172">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_7e4a9cb7-1e5e-471f-a4d2-0bd925ba404c" name="Periode of tijdvakken beoogd gebruik grondslag">
+    <semantic:variable id="_49a91917-1756-4457-b2f3-0ce80cce2833" name="Periode of tijdvakken beoogd gebruik grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_e05959e7-1dfb-4475-94da-2b19943e4d77"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_0e6fd2b9-7398-444b-85eb-31e28c6b42d8" outputLabel="Periode of tijdvakken beoogd gebruik grondslag">
+      <semantic:input id="_9c8c30fb-03aa-4e11-9ca6-f6e3fc5b05b2">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Periode of tijdvakken beoogd gebruik conversie</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_d508bb27-0947-4cfb-82ac-172badd47884"/>
+      <semantic:rule id="_d1822f11-02f0-4cca-86a6-6ee1d54875f8">
+        <semantic:inputEntry id="_d6b57dae-e52d-4287-9f25-37ae8cc29763">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2eaf787d-d54f-470c-afe1-c7a3552a341c">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_b9fd162e-f4fb-42c3-9e96-e9d05d903671">
+        <semantic:inputEntry id="_41e8c921-43ed-49cf-a980-22eea7b24c0f">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_6b07224c-dc6f-49e1-9824-1186601e1166">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_ced5f367-776f-40fc-af7b-00fd5f1eb1ab" name="Tijdsgebruik bouwwerk">
+    <semantic:variable id="_e15931d3-d803-4a71-a0cd-147625af64fc" name="Tijdsgebruik bouwwerk" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_7e4a9cb7-1e5e-471f-a4d2-0bd925ba404c"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_f3f3252a-317a-4b9f-bff1-957ac377950a"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_65ea8aad-8b41-43ba-9b75-122df215f201"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="ANY" id="_03557e1c-0381-453c-a072-4f705ae47387" outputLabel="Tijdsgebruik bouwwerk">
+      <semantic:input id="_1f6bf8f1-7745-43af-a856-acb871964d7a">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Periode of tijdvakken beoogd gebruik grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_3761aa75-6a39-44c4-a83f-4936717a5ae7">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Voor tijdelijk of seizoensgebonden gebruik van een bouwwerk grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_c0841d36-2fe2-40a0-a74a-4f5d440a9b52">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Begindatum bouwwerk grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_b6bf6d2f-c572-409e-9324-a814dff613b3"/>
+      <semantic:rule id="_b20b4d4e-efb0-4502-91ec-a2e6ca4c27e7">
+        <semantic:inputEntry id="_f304a0c4-3e40-428e-aeff-742a8baaa44b">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_40cad47f-3d98-41d5-86d4-e27fdd91a711">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_fc508e5f-4656-42c9-9b73-a998279a2af6">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_0b6c20c6-717a-4bef-a821-4aa6f6c895b8">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_bb1cd8a6-b45b-4b42-9719-ca13bb76cfef">
+        <semantic:inputEntry id="_793532fe-2e18-49d4-8080-45f26ec99cd7">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_e10248bd-e527-4fdb-93aa-32900a67529c">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_08f471ae-3546-4d70-bd76-7a9f2a0f5777">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_9e2041a9-edca-418c-8d1d-8acb8f6429eb">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_c5993ebf-10aa-466c-aa26-5069435e4ebd">
+        <semantic:inputEntry id="_3999dc3c-8b97-4c55-a922-d0b7c8fe8743">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_092beb64-f43a-4920-a747-dbac0159c8c4">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_7df7a70d-faa4-4bda-99c9-6cf66e6d0b14">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_f48dff75-cce8-42c9-9a3b-0f9adcffa74f">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_9e783a7d-57ee-4b71-8781-c4462504e017">
+        <semantic:inputEntry id="_bf55e1c0-4902-4463-8f71-04a866243c73">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_553c5d36-0430-497e-82b5-6be88a1ce1fb">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_e216cc4a-25b3-4a9a-8952-e98edfc4e6a0">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b7999c9c-0b6f-4ee8-9049-7c7c3e3bc105">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_16d58736-68c4-4ea1-8fec-786eaceacae5" name="Niet verplicht - Gebruiken van bouwwerken">
+    <semantic:variable id="_7b7ee889-f844-4639-a8e9-40954c9e7a78" name="Niet verplicht - Gebruiken van bouwwerken" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_ced5f367-776f-40fc-af7b-00fd5f1eb1ab"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_258a5f13-209c-4215-9623-0dc1c6f68aa0" outputLabel="Niet verplicht - Gebruiken van bouwwerken">
+      <semantic:input id="_b210d73b-87b1-442d-82dc-84d785ddfe65">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Tijdsgebruik bouwwerk</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_7f09bc6b-ae97-4d30-b888-0aeaca7322ed"/>
+      <semantic:rule id="_26494667-5e3e-4d46-9e3f-7890829a0f60">
+        <semantic:inputEntry id="_9c88155a-5a1a-46aa-a4d9-2a07ff808653">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_6afce406-7e78-4fc0-b67a-a93a3b921e9f">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_82ebf3f1-5d3d-4a53-87c5-b1d869bdeb59">
+        <semantic:inputEntry id="_94eeb345-404f-48ab-b496-7e63c1415a62">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_75673e4a-8152-4718-a5bd-7277a2481e6f">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_780f8963-00ae-42dc-a6b0-d46572a8a390" name="Plattegrondtekening grondslag">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0007"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_7de50cac-e013-4d87-a252-3ad1e50c39fe" name="Plattegrondtekening grondslag" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:inputData id="_542c9942-1600-4d0f-9d2b-82e58323bf98" name="Begindatum bouwerk input">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0008"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_ce6237d0-e3d2-4072-8a77-a6156b030800" name="Begindatum bouwerk input" typeRef="feel:date"/>
+  </semantic:inputData>
+  <semantic:decision id="_4fc1efbb-f324-479d-8d2e-244ead732d2e" name="Begindatum bouwwerk conversie">
+    <semantic:variable id="_d8d44963-52e2-43cc-ae3d-d812aa48580f" name="Begindatum bouwwerk conversie" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_542c9942-1600-4d0f-9d2b-82e58323bf98"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_78fb1e63-9e58-4e23-92f1-44bafe08f8cc" outputLabel="Begindatum bouwwerk conversie">
+      <semantic:input id="_42acc988-5c05-4712-b89c-9f6bbff91257">
+        <semantic:inputExpression typeRef="feel:date">
+          <semantic:text>Begindatum bouwerk input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_2302f7b2-c73b-4483-9617-17ddfedaddf7"/>
+      <semantic:rule id="_91d34504-d01c-4f4c-ba77-0dd331855bb9">
+        <semantic:inputEntry id="_2b19db81-b7a2-46ad-86f0-b0f5f80f32d1">
+          <semantic:text>not(null)</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_bfdafcef-21b9-47fc-b98f-fbc9de24fe60">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_29de8d1a-ce86-4ba2-af6f-02fc4f6aa1f1" name="Vaste waarde input">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0006"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_aff9ae90-3003-4fca-b20d-e07ecfb8ac55" name="Vaste waarde input" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:decision id="_931cee3e-8f0a-49ce-a5f3-29e239e584bd" name="Dagtekening grondslag">
+    <semantic:variable id="_67531c68-c00f-4aa4-899f-0e16914c9f20" name="Dagtekening grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_29de8d1a-ce86-4ba2-af6f-02fc4f6aa1f1"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_e4cbcbb0-c86f-40c6-bd4e-b69cf55e5065" outputLabel="Dagtekening grondslag">
+      <semantic:input id="_70f7905a-920c-466d-ab8b-abcc5a6cad4a">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Vaste waarde input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_a0756df5-0430-4b54-a811-94f2707655e6"/>
+      <semantic:rule id="_f668cbd9-330c-4a85-b700-5dc4ca78c9bd">
+        <semantic:inputEntry id="_66ec53dd-ba37-4944-b378-8f3384a3b9f5">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_ccdb67aa-45c2-482e-8c6e-1d6db47fecbc">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_c7c43263-d7f7-4cc7-9e8b-69494e3c304b">
+        <semantic:inputEntry id="_036a71c9-0f74-402f-8e22-b9cdfca1c954">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_30ad556c-c27a-4798-acbc-4c03df4a6a1d">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_ee517d91-6f91-4ece-839a-d9fe765161c6" name="Ondertekening grondslag">
+    <semantic:variable id="_a28318c5-0476-409c-83df-86b96c83c1d6" name="Ondertekening grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_29de8d1a-ce86-4ba2-af6f-02fc4f6aa1f1"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_4c036b87-c4ca-4f25-9971-4169526794ef" outputLabel="Ondertekening grondslag">
+      <semantic:input id="_055a6978-2818-4faf-b379-d043c7767faf">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Vaste waarde input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_82e2750b-4b7f-4d94-9c00-37bc4021e130"/>
+      <semantic:rule id="_fe749595-8228-4bad-9e1d-aa14efc7465f">
+        <semantic:inputEntry id="_5089d3fb-0d1e-4c05-b457-b189bedc1fb1">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_a3e1532d-64d6-47d5-9de0-d7ea93a98ed7">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_04a8e74d-bcb1-484d-98c3-4b60558f4d6f">
+        <semantic:inputEntry id="_24850d9a-3f13-4df3-b329-9822fabfa255">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2bfefaec-c5cc-4660-846a-82245a35161e">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_65ea8aad-8b41-43ba-9b75-122df215f201" name="Begindatum bouwwerk grondslag">
+    <semantic:variable id="_7c2bfe09-1b82-494b-8eec-61ce06d81e52" name="Begindatum bouwwerk grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_4fc1efbb-f324-479d-8d2e-244ead732d2e"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_92a4e38c-f5f9-4bd1-a380-a6d0fad5069c" outputLabel="Begindatum bouwwerk grondslag">
+      <semantic:input id="_1d4066aa-2e1c-41a7-b52b-d5c206422f8f">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Begindatum bouwwerk conversie</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_908085c9-41f9-440e-b819-fa13d31ea443"/>
+      <semantic:rule id="_784bb8aa-e3c2-4332-a553-3ec944c6ebbe">
+        <semantic:inputEntry id="_dcbc46b6-56a3-413a-9590-3dc7214d2211">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_9f26fa55-1da4-4a34-9035-2969c5001869">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_b72299e1-7d4a-4208-80fd-7edf5614d49b">
+        <semantic:inputEntry id="_6989493a-8b26-48ab-b4f2-1b9a8991c7ee">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_71524d0b-43a9-4170-8dbb-4445f57d7922">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_f3f3252a-317a-4b9f-bff1-957ac377950a" name="Voor tijdelijk of seizoensgebonden gebruik van een bouwwerk grondslag">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0010"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_92bba960-5c9d-49b9-8d83-0b3eec4ac8dc" name="Voor tijdelijk of seizoensgebonden gebruik van een bouwwerk grondslag" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:inputData id="_d4a839ae-095b-43a5-9527-00cbf23a98d5" name="In werkingsgebied HDSR grondslag">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0011"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_d9d6bafe-2c9c-47fb-a2f5-2ccfae26c7e7" name="In werkingsgebied HDSR grondslag" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:decision id="_f43fd546-f4ee-416b-8fc1-19565e11f2f4" name="Lokale brandveilig gebruik gegevens">
+    <semantic:variable id="_6d6c4536-68ec-4dbd-aa35-00ff2cef3a85" name="Lokale brandveilig gebruik gegevens" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_d4a839ae-095b-43a5-9527-00cbf23a98d5"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_ecefe249-799a-4f3f-a173-5bbe538aa2bd"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="ANY" id="_341fe4b6-539c-4c0c-b071-81aab92bc15b" outputLabel="Lokale brandveilig gebruik gegevens">
+      <semantic:input id="_e7b078fa-0d19-4088-be9a-9649d78960c5">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>In werkingsgebied HDSR grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_8d8a33aa-a042-43c3-9c75-9e557b50d955">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Blusinstallatie met watermist gegevens volledig</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_06a5aca7-446a-403f-9709-eda9198dcc3d"/>
+      <semantic:rule id="_4b1a2b11-b52a-4c5f-b3e3-848de6d78a75">
+        <semantic:inputEntry id="_e2501f7c-9535-4324-8a3b-252e21caed6a">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_2678eb34-f507-4ffb-836e-e4a94991bd73">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_472f6e45-18e8-40f2-9c1b-e4db853c2075">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_c51385d8-5a7d-474d-aa13-282ae6e146bd">
+        <semantic:inputEntry id="_aec91306-3bce-44ab-b9ad-d2579fb94d8b">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_b0fb853d-5045-432e-9436-978c80a1b687">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_2ca96d47-aec6-4e37-a343-2f572fd2cfd7">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_391831b4-b6ef-4dea-8d1a-336af42f630c">
+        <semantic:inputEntry id="_74abcf66-59ba-469d-a5b0-2fefebe48964">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_567bb326-dd5c-4531-9e2a-76a255ff7825">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b58b33b4-34c1-4164-be45-cdf0034b3633">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_ecefe249-799a-4f3f-a173-5bbe538aa2bd" name="Blusinstallatie met watermist gegevens volledig">
+    <semantic:variable id="_4516e45b-3a75-4d8c-967e-422f40e05933" name="Blusinstallatie met watermist gegevens volledig" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_2a150245-bd3f-45a1-abd7-72e4e93a74a9"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_131cf601-4f27-40ec-b0f0-9349829619ab"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="ANY" id="_8a50f976-eb6f-4bf3-a3ce-26a6452ea489" outputLabel="Blusinstallatie met watermist gegevens volledig">
+      <semantic:input id="_acb90381-37c3-406d-b4c9-fe25c7130f8e">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Blusinstallatie met watermist grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:input id="_de7b550e-df6b-4b79-9f68-e0467687615d">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Hoogte van de hoogste vloer boven het maaiveld grondslag</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_aee841aa-8c36-440e-84e8-d8946c9a223d"/>
+      <semantic:rule id="_c78f8d74-cbf4-4041-8e87-eed02873cb0a">
+        <semantic:inputEntry id="_b92524db-079c-435a-9d19-7bbd9eb8a427">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_1aa05c4b-060c-4714-ad14-5c5132dff0b8">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_09506311-dcd5-4f50-b37e-0b1345fa9cae">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_e4f2f3c0-712e-4205-9e80-090dcd7aa713">
+        <semantic:inputEntry id="_a2522a90-7156-43bc-b2dc-679b45def59e">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_0525a4f8-8ff2-4156-88b5-26d59d94a416">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b6593ac4-0bba-445a-b026-c302b693c2bc">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_e1dee320-a07b-4804-ac7d-4bd8d6e55be2">
+        <semantic:inputEntry id="_6ca72d02-459b-431b-b20e-cda695acb3d7">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_e1041d90-dbb3-451c-b378-4b827a90cf74">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_413e354d-b0f5-4065-a638-040901b6e68f">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_131cf601-4f27-40ec-b0f0-9349829619ab" name="Hoogte van de hoogste vloer boven het maaiveld grondslag">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0012"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_da59b68d-f389-42ff-82cf-47eb0b1b7017" name="Hoogte van de hoogste vloer boven het maaiveld grondslag" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:inputData id="_2a150245-bd3f-45a1-abd7-72e4e93a74a9" name="Blusinstallatie met watermist grondslag">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0013"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_6a4a90d6-c03b-421a-a0ac-fe82c97747df" name="Blusinstallatie met watermist grondslag" typeRef="feel:boolean"/>
+  </semantic:inputData>
+  <semantic:inputData id="_ceae99e0-622a-4910-ae3c-e1850c3c8c34" name="Naam van de melder input">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0014"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_72eb504a-1a36-4864-89f3-5d1b479f6fd8" name="Naam van de melder input" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:inputData id="_3293ae95-2d85-4084-972d-9a57f0b7e97c" name="Naam van de gemachtigde input">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0015"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_71ca7877-30d8-42d2-8dce-0053df6102c2" name="Naam van de gemachtigde input" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:inputData id="_9348c6b2-4933-45da-9628-70485b9bd207" name="Adres van de gemachtigde input">
+    <semantic:extensionElements>
+      <uitv:uitvoeringsregelRef xmlns:uitv="http://toepasbare-regels.omgevingswet.overheid.nl/v0.8/Uitvoeringsregel" href="#UitvId0016"/>
+    </semantic:extensionElements>
+    <semantic:variable id="_6c5c2021-3900-4a80-9a7d-0d021fb3c754" name="Adres van de gemachtigde input" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:decision id="_7dcd3271-552a-4883-8957-d5ef9547ed63" name="Naam van de melder conversie">
+    <semantic:variable id="_9197685f-ec22-4563-b522-f017e9cac3b5" name="Naam van de melder conversie" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_ceae99e0-622a-4910-ae3c-e1850c3c8c34"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_1a7b3fb2-63d2-4618-aefd-bde642934cc4" outputLabel="Naam van de melder conversie">
+      <semantic:input id="_f263f618-b97b-4571-b8b3-e60441ac622f">
+        <semantic:inputExpression typeRef="feel:string">
+          <semantic:text>Naam van de melder input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_966e68f2-dcf7-4bf5-9b99-364607244845"/>
+      <semantic:rule id="_e13c5719-7ca3-4f9a-9220-df541b284c2a">
+        <semantic:inputEntry id="_3e09a64c-c47f-4e86-a097-4cca5a44f4df">
+          <semantic:text>not(null)</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_503deba9-7fca-4af2-a8fe-10d46aa6ab9c">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_eb687c7d-8a97-45fb-bff5-37eb027214c8" name="Naam van de gemachtigde conversie">
+    <semantic:variable id="_7916d252-53f9-4169-8bed-6c4ae02e810a" name="Naam van de gemachtigde conversie" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_3293ae95-2d85-4084-972d-9a57f0b7e97c"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_cc40e2e0-4b93-4dcd-ba7e-9e548d7e540c" outputLabel="Naam van de gemachtigde conversie">
+      <semantic:input id="_69e47902-2704-4fee-bfe4-a8badcb18cdf">
+        <semantic:inputExpression typeRef="feel:string">
+          <semantic:text>Naam van de gemachtigde input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_01479cff-b449-4bad-8b97-bd205cbd0679"/>
+      <semantic:rule id="_cd9f3890-1cf7-4c86-a463-683dd65fee9d">
+        <semantic:inputEntry id="_aa1b414e-c344-46fb-8d28-b5e13bb1abf0">
+          <semantic:text>not(null)</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_f407a40f-f5ec-4c00-ae03-3de2890d11ec">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_6e8333d7-0aa9-4b7d-a307-ba600bff8b36" name="Adres van de gemachtigde conversie">
+    <semantic:variable id="_f1dc602a-bab4-4e22-ac03-b0c6669b8ddc" name="Adres van de gemachtigde conversie" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_9348c6b2-4933-45da-9628-70485b9bd207"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_10c0d470-5a57-4553-9e9f-cc45aa508247" outputLabel="Adres van de gemachtigde conversie">
+      <semantic:input id="_03459bb6-3fd5-4b11-b67a-95ac42dd6eed">
+        <semantic:inputExpression typeRef="feel:string">
+          <semantic:text>Adres van de gemachtigde input</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_4d93c595-d4c2-440a-ac07-022f015a38cd"/>
+      <semantic:rule id="_169a16db-8db7-4964-95df-c308fd5c8852">
+        <semantic:inputEntry id="_7d4ba8db-7d8a-4993-9c41-ae37b442547b">
+          <semantic:text>not(null)</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_ea1b6078-0c6e-4be8-9c26-3b310419e79c">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_71f5f4c8-1f2d-4060-b590-30b722d870c5" name="Naam van de melder grondslag">
+    <semantic:variable id="_6fbb717f-a207-4b2a-8c62-548a50d610e8" name="Naam van de melder grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_7dcd3271-552a-4883-8957-d5ef9547ed63"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_cf4777d0-ef8e-4b03-bf2e-d6d0d6936d97" outputLabel="Naam van de melder grondslag">
+      <semantic:input id="_6901d66b-279c-4f36-abae-52242961d259">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Naam van de melder conversie</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_d7a09e5e-9638-40bf-9559-74dfc2da9d0b"/>
+      <semantic:rule id="_bcdabd19-9531-4911-9da4-ebae19650e00">
+        <semantic:inputEntry id="_8371e803-83a7-45ea-badd-743851e437bf">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_4e432efc-0b40-4774-87f0-6c6416c909c6">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_3904c329-136e-46ea-87ff-d123367304e9">
+        <semantic:inputEntry id="_5802fa30-ff0c-4554-8f41-7f85c5d137a6">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_442da51a-e136-449c-846e-a93b43cab826">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_6362fe80-ce54-4b1b-9efd-fb4d029ab554" name="Naam van de gemachtigde grondslag">
+    <semantic:variable id="_f897e4f9-095b-4229-a689-34cd0f324cb6" name="Naam van de gemachtigde grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_eb687c7d-8a97-45fb-bff5-37eb027214c8"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_bdcc300c-260a-4f65-bc1b-290c083415cc" outputLabel="Naam van de gemachtigde grondslag">
+      <semantic:input id="_1f3fb11c-9297-4a93-9342-50eb3eeb0ad6">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Naam van de gemachtigde conversie</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_4d60aa8e-0222-49fb-8a00-f1cd7a2e6797"/>
+      <semantic:rule id="_c9c77761-baa1-4481-a987-b6d420c9d367">
+        <semantic:inputEntry id="_bc6e82db-2370-438d-86cf-31ef2411fe3e">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_b82245c9-5bc4-4847-a6f2-b092dacfe558">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_9efe95a9-43e4-493d-9d3f-fbd8ca75e5d3">
+        <semantic:inputEntry id="_0221393b-d075-415c-87da-d73e032e63dd">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_20ac3bba-f072-41a7-92d1-344ab14ea589">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:decision id="_f8fef30c-30b2-4048-8f50-71951ddd3be4" name="Adres van de gemachtigde grondslag">
+    <semantic:variable id="_f0e4d38b-b885-4153-aca4-d514c4c44d4a" name="Adres van de gemachtigde grondslag" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredDecision href="#_6e8333d7-0aa9-4b7d-a307-ba600bff8b36"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_4be50f55-436d-4a4f-82e7-de64c60c0ace" outputLabel="Adres van de gemachtigde grondslag">
+      <semantic:input id="_432b31ec-b0bd-4419-abb4-3d665a36b3c5">
+        <semantic:inputExpression typeRef="feel:boolean">
+          <semantic:text>Adres van de gemachtigde conversie</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_65a22e7a-e3e0-4bdc-84fd-eceb6df8f9e4"/>
+      <semantic:rule id="_e6c42db0-df35-4f9b-afe9-b2db5b36e5c5">
+        <semantic:inputEntry id="_f49bf87a-dd09-48a5-98d8-6622ec7b533a">
+          <semantic:text>true</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_69c65b2d-dd9d-4e68-9720-eb393d7e77c5">
+          <semantic:text>true</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_e9c61fc0-0a13-41ac-bf89-ca59538aeabb">
+        <semantic:inputEntry id="_477eda0d-ab31-4509-8963-6956c952e8e2">
+          <semantic:text>false</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_545b4802-5526-4506-8845-3a120998d0b0">
+          <semantic:text>false</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:textAnnotation id="_20c97bee-6f1a-4e3f-9f3c-dfb48d48c2f2">
+    <semantic:text>UR 0003 - aanvraag zelf ingediend
+Vraag aan gebruiker
+Wordt de aanvraag door de belanghebbende zelf ingediend?
+gegevensType: Ja-Nee vraag</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_20a359bf-a8ac-4c20-a7ab-f56da77f514a">
+    <semantic:text>UR 0002 - adres melder
+Vraag aan gebruiker
+Wat is het adres van de melder?
+gegevensType: Open vraag</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_d329b78e-5bb0-43bc-9c13-d6b1cb769856">
+    <semantic:text>UR 0004 - ligging bouwwerk
+Vraag aan gebruiker
+Wat is de ligging van het bouwwerk?
+- Noord
+- Noord-Oost
+- Noord-West
+- Zuid
+- Zuid-Oost
+- Zuid-West
+- Oost
+- West
+gegevensType: Meerkeuze - een antwoord</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_29165e4f-d58c-464f-8b9f-f145e28c8cc0">
+    <semantic:text>UR 0005 - ligging bouwwerk
+Vraag aan gebruiker
+In welke maanden gaat u het bouwwerk gebruiken?
+- januari
+- februari
+- maart
+- april
+- mei
+- juni
+- juli
+- augustus
+- september
+- oktober
+- november
+- december
+gegevensType: Meerkeuze - een of meerdere antwoorden</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_fe2e8719-1fee-4375-9a6f-c9428c009ee4">
+    <semantic:text>UR 0007 - plattegrond gebruiksmelding
+Bijlage
+Plattegrond Gebruiksmelding.
+De schaal van de plattegrond moet minimaal 1:100 zijn, bij een brutovloeroppervlakte van meer dan 10.000 m2 minimaal 1:200.</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_d19f4f3e-8770-4dc6-9196-db5fd9273194">
+    <semantic:text>UR 0008 - tijdelijk gebruik
+Vraag aan gebruiker
+Vanaf welke datum gaat ut het bouwwerk gebruiken?
+gegevensType: datum vraag</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_77c9eed4-a677-45d6-905c-8f8be15cadce">
+    <semantic:text>UR 0006 - vaste waarde TRUE
+Vaste waarde
+TRUE</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_00ec7e45-7513-40bf-892b-11e384bfe846">
+    <semantic:text>UR 0010 - Is dit bouwwerk bedoeld voor tijdelijk gebruik?</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_9366d2b2-f75a-4273-b3ee-a71f2b616919">
+    <semantic:text>UR 0014 - naam melder
+Vraag aan gebruiker
+Wat is de naam van de melder?</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_7ea9f713-0ef7-4721-a94b-b0146a5c9325">
+    <semantic:text>UR 0016 - naam gemachtigde
+Vraag aan gebruiker
+Wat is de naam van de gemachtigde?</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:textAnnotation id="_e925aa66-5266-4763-9b84-9ecdcf012786">
+    <semantic:text>UR 0015 - adres gemachtigde
+Vraag aan gebruiker
+Wat is het adres van de gemachtigde?</semantic:text>
+  </semantic:textAnnotation>
+  <semantic:association id="_9864eb1d-d749-4adf-854c-d83649623568">
+    <semantic:sourceRef href="#_20c97bee-6f1a-4e3f-9f3c-dfb48d48c2f2"/>
+    <semantic:targetRef href="#_efd9d33a-d676-4c3d-8de7-2653e3e56b8a"/>
+  </semantic:association>
+  <semantic:association id="_6cf12a65-d970-41cd-993a-223bc56d8eb6">
+    <semantic:sourceRef href="#_20a359bf-a8ac-4c20-a7ab-f56da77f514a"/>
+    <semantic:targetRef href="#_58ba91c1-df90-4fa7-b741-f7c624c7f09a"/>
+  </semantic:association>
+  <semantic:association id="_e62f08ea-451d-4660-baca-d1cfa606b2bb">
+    <semantic:sourceRef href="#_d329b78e-5bb0-43bc-9c13-d6b1cb769856"/>
+    <semantic:targetRef href="#_d4107efd-0e04-44f9-a4a2-314b9bdef351"/>
+  </semantic:association>
+  <semantic:association id="_08113653-00ee-404e-9f12-bd1a00672e07">
+    <semantic:sourceRef href="#_29165e4f-d58c-464f-8b9f-f145e28c8cc0"/>
+    <semantic:targetRef href="#_ab5f4cac-e26b-4ef7-bedb-d3350fcb4919"/>
+  </semantic:association>
+  <semantic:association id="_d4d34e63-ac0d-46f7-99d1-2dac11249cac">
+    <semantic:sourceRef href="#_fe2e8719-1fee-4375-9a6f-c9428c009ee4"/>
+    <semantic:targetRef href="#_780f8963-00ae-42dc-a6b0-d46572a8a390"/>
+  </semantic:association>
+  <semantic:association id="_bf76e080-216c-4cf4-a204-911684e118c4">
+    <semantic:sourceRef href="#_d19f4f3e-8770-4dc6-9196-db5fd9273194"/>
+    <semantic:targetRef href="#_542c9942-1600-4d0f-9d2b-82e58323bf98"/>
+  </semantic:association>
+  <semantic:association id="_754e2fa1-09aa-41a3-8335-10f57d416c42">
+    <semantic:sourceRef href="#_77c9eed4-a677-45d6-905c-8f8be15cadce"/>
+    <semantic:targetRef href="#_29de8d1a-ce86-4ba2-af6f-02fc4f6aa1f1"/>
+  </semantic:association>
+  <semantic:association id="_5244d951-50df-4c83-bb3c-814789f30045">
+    <semantic:sourceRef href="#_00ec7e45-7513-40bf-892b-11e384bfe846"/>
+    <semantic:targetRef href="#_f3f3252a-317a-4b9f-bff1-957ac377950a"/>
+  </semantic:association>
+  <semantic:association id="_3f62181a-7525-4b82-afa6-389773de0d89">
+    <semantic:sourceRef href="#_9366d2b2-f75a-4273-b3ee-a71f2b616919"/>
+    <semantic:targetRef href="#_ceae99e0-622a-4910-ae3c-e1850c3c8c34"/>
+  </semantic:association>
+  <semantic:association id="_d0036561-ea1d-4b7d-ad97-2625fcfda2a6">
+    <semantic:sourceRef href="#_7ea9f713-0ef7-4721-a94b-b0146a5c9325"/>
+    <semantic:targetRef href="#_3293ae95-2d85-4084-972d-9a57f0b7e97c"/>
+  </semantic:association>
+  <semantic:association id="_3427bd5e-70df-4f59-ab60-332f4f34f97b">
+    <semantic:sourceRef href="#_e925aa66-5266-4763-9b84-9ecdcf012786"/>
+    <semantic:targetRef href="#_9348c6b2-4933-45da-9628-70485b9bd207"/>
+  </semantic:association>
+</semantic:definitions>

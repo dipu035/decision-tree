@@ -29,11 +29,11 @@ import org.kie.dmn.api.core.ast.DecisionNode;
 import org.kie.dmn.api.core.ast.InputDataNode;
 import org.kie.dmn.core.api.DMNFactory;
 import org.kie.dmn.core.util.KieHelper;
+import org.kie.dmn.model.v1_1.Decision;
 import org.kie.dmn.model.v1_1.InformationRequirement;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -43,18 +43,19 @@ public class DecisionTreeTest {
     private static DMNModel model;
     private List<InputDataNode> inputNodes = new ArrayList<>();
     private List<DecisionNode> decisionNodes = new ArrayList<>();
+    int numberOfQuestion = 0;
 
     @BeforeClass
     public static void init() {
         KieServices ks = KieServices.Factory.get();
         KieContainer kieContainer = KieHelper.getKieContainer(
                 ks.newReleaseId("org.kie.dmn.demo", "decision-tree", "1.0"),
-                ks.getResources().newClassPathResource("Conclusie_Dakkapel.dmn", DecisionTreeTest.class));
+                ks.getResources().newClassPathResource("DynamicQuestioning.dmn", DecisionTreeTest.class));
 
         runtime = kieContainer.newKieSession().getKieRuntime(DMNRuntime.class);
 
-        model = runtime.getModel("http://www.trisotech.com/dmn/definitions/_d523bd18-c840-4a7d-bffb-41cb1c83062a",
-                "Conclusie Dakkapel");
+        model = runtime.getModel("http://toepasbare-regels.omgevingswet.overheid.nl/00000001821699180000",
+                "Brandveilig gebruik Dynamisch");
         assertNotNull(model);
     }
 
@@ -79,12 +80,74 @@ public class DecisionTreeTest {
 
         DMNContext context = DMNFactory.newContext();
 
-        context.set("Zijkant", true);
-        context.set("Achterkant", true);
+        //scenario for Conclusie Dakkappel
+//        context.set("Zijkant", false);
+//        context.set("Achterkant", null);
+//        context.set("Dakpannen rondom", null);
+//        context.set("Dak helling", true);
+//        context.set("Met dakleer", null);
+        //context.set("Plat dak", null);
 
-        DMNResult result = runtime.evaluateDecisionByName(model, "Plaatsing correct", context);
-        assertEquals(result.getDecisionResultByName("Plaatsing correct").getResult(), true);
+        context.set("Aanvraag wordt door melder zelf ingediend grondslag", false);
+        context.set("Adres van de melder input", "address");
+        context.set("Ligging van het bouwwerk input", "anything");
+        context.set("Periode of tijdvakken beoogd gebruik input", null);
+        context.set("Plattegrondtekening grondslag", true);
+        context.set("Begindatum bouwerk input", null);
+        context.set("Vaste waarde input", true);
+        context.set("Voor tijdelijk of seizoensgebonden gebruik van een bouwwerk grondslag", false);
+        context.set("In werkingsgebied HDSR grondslag", false);
+        context.set("Hoogte van de hoogste vloer boven het maaiveld grondslag", null);
+        context.set("Blusinstallatie met watermist grondslag", null);
+        context.set("Naam van de melder input", "asdfsdadfd");
+        context.set("Naam van de gemachtigde input", "naam");
+        context.set("Adres van de gemachtigde input", "address");
 
+
+        //model.getInputs().forEach(inputDataNode -> System.out.println(inputDataNode.getName()));
+
+
+        DMNResult result = runtime.evaluateAll(model, context);
+        DMNContext resultContext = result.getContext();
+        String topLevelDecisionName = "Brandveilig gebruik";
+        Boolean finalResult = (Boolean) resultContext.get(topLevelDecisionName);
+        System.out.println(finalResult);
+        //result.getMessages().forEach(System.out::println);
+        if (finalResult == null) {
+            getRequiredQuestions(topLevelDecisionName, resultContext);
+        }
+
+        System.out.println("Number of questions needed to be answered :" + numberOfQuestion);
+
+    }
+
+    private void getRequiredQuestions(String topLevelDecisionName, DMNContext resultContext) {
+        DecisionNode decisionNodeConclusie = model.getDecisionByName(topLevelDecisionName);
+        Decision decisionConclusie = decisionNodeConclusie.getDecision();
+        if (decisionConclusie.getName().equals(topLevelDecisionName)) {
+            decisionConclusie.getInformationRequirement().forEach(informationRequirement -> {
+                getQuestionsFromDecisionOrInput(informationRequirement, resultContext);
+            });
+        }
+    }
+
+    private void getQuestionsFromDecisionOrInput(InformationRequirement informationRequirement, DMNContext resultContext) {
+        if (informationRequirement.getRequiredDecision() != null) {
+            DecisionNode decisionNode = model.getDecisionById(informationRequirement.getRequiredDecision().getHref().replace("#", ""));
+            Object decisoonResult = resultContext.get(decisionNode.getName());
+            if (decisoonResult == null) {
+                Decision subDecision = decisionNode.getDecision();
+                subDecision.getInformationRequirement().forEach(informationRequirement1 -> {
+                    getQuestionsFromDecisionOrInput(informationRequirement1, resultContext);
+                });
+            }
+        }
+        if (informationRequirement.getRequiredInput() != null) {
+            String requiredInput = informationRequirement.getRequiredInput() != null ? informationRequirement.getRequiredInput().getHref().replace("#", "") : null;
+            InputDataNode inputDataNode = model.getInputById(requiredInput);
+            numberOfQuestion++;
+            System.out.println(numberOfQuestion+". This question needs to be  answered : " + inputDataNode.getName());
+        }
     }
 
     @Test
@@ -119,12 +182,12 @@ public class DecisionTreeTest {
         List<InformationRequirement> infoReqs = decisionNode.getDecision().getInformationRequirement();
         List<DecisionNode> decisions = new ArrayList<>();
         List<InputDataNode> inputData = new ArrayList<>();
-        for(InformationRequirement infoReq : infoReqs) {
+        for (InformationRequirement infoReq : infoReqs) {
             DMNNode node = getInfoReq(infoReq);
-            if(node instanceof DecisionNode) {
+            if (node instanceof DecisionNode) {
                 decisions.add((DecisionNode) node);
             } else {
-                inputData.add((InputDataNode)node);
+                inputData.add((InputDataNode) node);
             }
         }
         assertEquals(decisions.size(), 2);
@@ -133,7 +196,7 @@ public class DecisionTreeTest {
 
     private DMNNode getInfoReq(InformationRequirement infoReq) {
         DMNNode node = null;
-        if(infoReq.getRequiredInput() != null) {
+        if (infoReq.getRequiredInput() != null) {
             node = model.getInputById(infoReq.getRequiredInput().getHref().substring(1));
         } else if (infoReq.getRequiredDecision() != null) {
             node = model.getDecisionById(infoReq.getRequiredDecision().getHref().substring(1));
