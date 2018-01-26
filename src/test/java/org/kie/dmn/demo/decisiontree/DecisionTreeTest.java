@@ -33,7 +33,9 @@ import org.kie.dmn.model.v1_1.Decision;
 import org.kie.dmn.model.v1_1.InformationRequirement;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -43,7 +45,6 @@ public class DecisionTreeTest {
     private static DMNModel model;
     private List<InputDataNode> inputNodes = new ArrayList<>();
     private List<DecisionNode> decisionNodes = new ArrayList<>();
-    int numberOfQuestion = 0;
 
     @BeforeClass
     public static void init() {
@@ -75,7 +76,7 @@ public class DecisionTreeTest {
     }
 
     @Test
-    public void testPartialDecision() {
+    public void testDynamicQuestioning() {
 
 
         DMNContext context = DMNFactory.newContext();
@@ -88,15 +89,15 @@ public class DecisionTreeTest {
 //        context.set("Met dakleer", null);
         //context.set("Plat dak", null);
 
-        context.set("Aanvraag wordt door melder zelf ingediend grondslag", false);
-        context.set("Adres van de melder input", "address");
-        context.set("Ligging van het bouwwerk input", "anything");
+        context.set("Aanvraag wordt door melder zelf ingediend grondslag", null);
+        context.set("Adres van de melder input", null);
+        context.set("Ligging van het bouwwerk input", null);
         context.set("Periode of tijdvakken beoogd gebruik input", null);
-        context.set("Plattegrondtekening grondslag", true);
+        context.set("Plattegrondtekening grondslag", null);
         context.set("Begindatum bouwerk input", null);
-        context.set("Vaste waarde input", true);
-        context.set("Voor tijdelijk of seizoensgebonden gebruik van een bouwwerk grondslag", false);
-        context.set("In werkingsgebied HDSR grondslag", false);
+        context.set("Vaste waarde input", null);
+        context.set("Voor tijdelijk of seizoensgebonden gebruik van een bouwwerk grondslag", null);
+        context.set("In werkingsgebied HDSR grondslag", null);
         context.set("Hoogte van de hoogste vloer boven het maaiveld grondslag", null);
         context.set("Blusinstallatie met watermist grondslag", null);
         context.set("Naam van de melder input", "asdfsdadfd");
@@ -113,41 +114,45 @@ public class DecisionTreeTest {
         Boolean finalResult = (Boolean) resultContext.get(topLevelDecisionName);
         System.out.println(finalResult);
         //result.getMessages().forEach(System.out::println);
+        Set<String> questions = new HashSet<>();
         if (finalResult == null) {
-            getRequiredQuestions(topLevelDecisionName, resultContext);
+            questions =getRequiredQuestions(topLevelDecisionName, resultContext);
         }
 
-        System.out.println("Number of questions needed to be answered :" + numberOfQuestion);
+        System.out.println("Number of questions needed to be answered :" + questions.size());
+        questions.forEach(s -> System.out.println("Question to be answered : " + s));
 
     }
 
-    private void getRequiredQuestions(String topLevelDecisionName, DMNContext resultContext) {
+    private Set<String> getRequiredQuestions(String topLevelDecisionName, DMNContext resultContext) {
         DecisionNode decisionNodeConclusie = model.getDecisionByName(topLevelDecisionName);
         Decision decisionConclusie = decisionNodeConclusie.getDecision();
+        Set<String> questions  = new HashSet<>();
         if (decisionConclusie.getName().equals(topLevelDecisionName)) {
             decisionConclusie.getInformationRequirement().forEach(informationRequirement -> {
-                getQuestionsFromDecisionOrInput(informationRequirement, resultContext);
+                questions.addAll(getQuestionsFromDecisionOrInput(informationRequirement, resultContext, new HashSet<>()));
             });
         }
+        return questions;
     }
 
-    private void getQuestionsFromDecisionOrInput(InformationRequirement informationRequirement, DMNContext resultContext) {
+    private Set<String> getQuestionsFromDecisionOrInput(InformationRequirement informationRequirement, DMNContext resultContext, Set<String> questions) {
         if (informationRequirement.getRequiredDecision() != null) {
             DecisionNode decisionNode = model.getDecisionById(informationRequirement.getRequiredDecision().getHref().replace("#", ""));
             Object decisoonResult = resultContext.get(decisionNode.getName());
             if (decisoonResult == null) {
                 Decision subDecision = decisionNode.getDecision();
                 subDecision.getInformationRequirement().forEach(informationRequirement1 -> {
-                    getQuestionsFromDecisionOrInput(informationRequirement1, resultContext);
+                    getQuestionsFromDecisionOrInput(informationRequirement1, resultContext, questions);
                 });
             }
         }
         if (informationRequirement.getRequiredInput() != null) {
             String requiredInput = informationRequirement.getRequiredInput() != null ? informationRequirement.getRequiredInput().getHref().replace("#", "") : null;
             InputDataNode inputDataNode = model.getInputById(requiredInput);
-            numberOfQuestion++;
-            System.out.println(numberOfQuestion+". This question needs to be  answered : " + inputDataNode.getName());
+            questions.add(inputDataNode.getName());
         }
+        return questions;
     }
 
     @Test
